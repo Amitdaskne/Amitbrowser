@@ -14,7 +14,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltNavGraphViewModels
@@ -43,7 +42,6 @@ fun BrowserScreen(
     val isBookmarked by viewModel.isBookmarked.collectAsState()
     val showTabSwitcher by viewModel.showTabSwitcher.collectAsState()
     
-    // Permissions
     val cameraPermissionState = rememberPermissionState(
         Manifest.permission.CAMERA
     )
@@ -54,10 +52,8 @@ fun BrowserScreen(
         Manifest.permission.ACCESS_FINE_LOCATION
     )
     
-    // WebView state
     var webView by remember { mutableStateOf<WebView?>(null) }
     
-    // Observe lifecycle to handle WebView
     DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
             when (event) {
@@ -84,7 +80,6 @@ fun BrowserScreen(
     
     Box(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.fillMaxSize()) {
-            // Toolbar
             BrowserToolbar(
                 url = url,
                 title = title,
@@ -117,7 +112,6 @@ fun BrowserScreen(
                 }
             )
             
-            // WebView
             Box(modifier = Modifier.weight(1f)) {
                 AndroidView(
                     factory = { ctx ->
@@ -151,7 +145,6 @@ fun BrowserScreen(
                                 }
                             )
                             
-                            // Load URL
                             if (url.isNotEmpty()) {
                                 loadUrl(url)
                             } else {
@@ -167,7 +160,6 @@ fun BrowserScreen(
                     modifier = Modifier.fillMaxSize()
                 )
                 
-                // Loading indicator
                 if (isLoading) {
                     LinearProgressIndicator(
                         progress = progress,
@@ -180,7 +172,6 @@ fun BrowserScreen(
             }
         }
         
-        // Tab Switcher
         if (showTabSwitcher) {
             TabSwitcher(
                 tabs = tabs,

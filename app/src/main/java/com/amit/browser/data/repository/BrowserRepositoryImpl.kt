@@ -67,7 +67,6 @@ class BrowserRepositoryImpl @Inject constructor(
         context.dataStore.edit { preferences ->
             val currentHistory = preferences[HISTORY_KEY] ?: emptySet()
             val newEntry = "$url|$title|${System.currentTimeMillis()}"
-            // Keep only last 100 entries
             val updated = (currentHistory + newEntry).takeLast(100).toSet()
             preferences[HISTORY_KEY] = updated
         }

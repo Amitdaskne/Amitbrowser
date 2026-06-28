@@ -11,10 +11,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import com.amit.browser.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -43,7 +41,6 @@ fun BrowserToolbar(
         color = if (isIncognito) Color(0xFF1A1A1A) else MaterialTheme.colorScheme.primaryContainer
     ) {
         Column {
-            // Top action bar
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -51,7 +48,6 @@ fun BrowserToolbar(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // Navigation buttons
                 Row {
                     IconButton(onClick = onBackClick) {
                         Icon(
@@ -76,7 +72,6 @@ fun BrowserToolbar(
                     }
                 }
                 
-                // Tab count and new tab
                 Row {
                     IconButton(onClick = onBookmarkClick) {
                         Icon(
@@ -109,7 +104,6 @@ fun BrowserToolbar(
                 }
             }
             
-            // URL bar
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -117,7 +111,6 @@ fun BrowserToolbar(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // Site security indicator
                 Icon(
                     Icons.Default.Lock,
                     contentDescription = "Security",
@@ -125,7 +118,6 @@ fun BrowserToolbar(
                     modifier = Modifier.size(20.dp)
                 )
                 
-                // URL input
                 if (isEditing) {
                     TextField(
                         value = urlText,

@@ -70,7 +70,6 @@ class BrowserViewModel @Inject constructor(
             val formattedUrl = WebViewUtils.formatUrl(url)
             _currentUrl.value = formattedUrl
             
-            // Update tab
             val currentTab = _tabs.value.find { it.id == _currentTabId.value }
             if (currentTab != null) {
                 val updatedTab = currentTab.copy(
@@ -82,7 +81,6 @@ class BrowserViewModel @Inject constructor(
                 }
             }
             
-            // Check bookmark status
             checkBookmarkStatus(formattedUrl)
         }
     }
@@ -168,7 +166,6 @@ class BrowserViewModel @Inject constructor(
                 _loadProgress.value = 1f
                 if (url != null) {
                     _currentTitle.value = view?.title ?: url
-                    // Update tab title
                     val currentTab = _tabs.value.find { it.id == _currentTabId.value }
                     if (currentTab != null) {
                         val updatedTab = currentTab.copy(
@@ -183,7 +180,6 @@ class BrowserViewModel @Inject constructor(
             
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
                 request?.url?.let { url ->
-                    // Check if we should handle this URL
                     return WebViewUtils.shouldOverrideUrlLoading(url)
                 }
                 return false
@@ -195,7 +191,6 @@ class BrowserViewModel @Inject constructor(
                 error: WebResourceError?
             ) {
                 _isLoading.value = false
-                // Show error page
             }
         }
     }

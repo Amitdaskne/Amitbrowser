@@ -82,7 +82,6 @@ fun AmitBrowserTheme(
     )
 }
 
-// Color definitions
 private val Purple80 = Color(0xFFD0BCFF)
 private val PurpleGrey80 = Color(0xFFCCC2DC)
 private val Pink80 = Color(0xFFEFB8C8)
